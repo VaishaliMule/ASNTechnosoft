@@ -1,0 +1,133 @@
+﻿@model ASNTechnosoftWithJWT.Areas.Admin.Models.StaffWizardFormModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+   
+    <link href="/Content/dist/assets/css/pages/wizard/wizard-1.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    
+</head>
+<body>
+<div class="modal-dialog modal-lg modal-xl modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+            <div><h4>Are you sure you want to delete this?</h4></div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i aria-hidden="true" class="ki ki-close"></i>
+            </button>
+
+        </div>
+        <div class="modal-body" style="height: 600px;">
+            <div class="row justify-content-center">
+                <div class="col-xl-12 col-xxl-7">
+                    <h6 class="font-weight-bolder mb-3">Personal Details:</h6>
+                    <div class="form-horizontal">
+                        <text>Name : @Html.DisplayFor(model => model.FirstName) &nbsp;@Html.DisplayFor(model => model.MiddleName)&nbsp; @Html.DisplayFor(model => model.LastName)</text>
+                        <br />
+                        <text>Email : @Html.DisplayFor(model => model.Email)</text>
+                        <br />
+                        <text>Date of Birth : @Html.DisplayFor(model => model.DOB)</text>
+                        <br />
+                        <text>Qualification : @Html.DisplayFor(model => model.Qualification)</text>
+                        <br />
+                        <text>Aadhar No. : @Html.DisplayFor(model => model.Aadhar)</text>
+                        <br />
+                        <text>PAN No. :  @Html.DisplayFor(model => model.PAN)</text>
+                    </div>
+                    <div class="separator separator-dashed my-5"></div>
+
+                    <h6 class="font-weight-bolder mb-3">Contact Details:</h6>
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <text>Mobile number: @Html.DisplayFor(model => model.Mobile)</text>
+                                <h6>Current Address</h6>
+                                <text>Address:@Html.DisplayFor(model => model.CAddress),&nbsp; @Html.DisplayFor(model => model.CLocationArea)</text>
+                                <br /><text>State :@Html.DisplayFor(model => model.CState)</text>
+                                <br /><text>Dist : @Html.DisplayFor(model => model.CDistrict)</text>
+                                <br /><text>Tahsil/Block :@Html.DisplayFor(model => model.CTaluka)</text>
+                                <br /> <text>Pin Code : @Html.DisplayFor(model => model.PinCode)</text>
+
+
+                            </div>
+                            <div class="col-xl-6">
+                                <text>Alternate Mobile number: @Html.DisplayFor(model => model.AlternateMobile)</text>
+                                <h6>Permanent Address</h6>
+                                <text>Address:@Html.DisplayFor(model => model.PAddress),&nbsp; @Html.DisplayFor(model => model.PLocationArea)</text>
+                                <br /><text>State :@Html.DisplayFor(model => model.PState)</text>
+                                <br /><text>Dist : @Html.DisplayFor(model => model.PDistrict)</text>
+                                <br /><text>Tahsil/Block :@Html.DisplayFor(model => model.PTaluka)</text>
+                                <br /><text>Pin Code : @Html.DisplayFor(model => model.PPinCode)</text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="separator separator-dashed my-5"></div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <h6 class="font-weight-bolder mb-3">Bank Details:</h6>
+                            <div class="form-horizontal">
+                                <text>Have Bank Details? : @Html.DisplayFor(model => model.HaveBankDetails)</text>
+                                <br />
+                                @if (Model.HaveBankDetails == "No")
+                                {
+
+                                }
+                                else
+                                {
+                                    <text>Account Holder Name : @Html.DisplayFor(model => model.AccountHolderName)</text>
+                                    <br />
+                                    <text>Bank Account No :@Html.DisplayFor(model => model.BankAccountNo)</text>
+                                    <br />
+                                    <text>Bank Name: @Html.DisplayFor(model => model.BankName)</text>
+                                    <br />
+                                    <text>Branch : @Html.DisplayFor(model => model.BankBranch)</text>
+                                    <br />
+                                    <text>IFSC Code :@Html.DisplayFor(model => model.IFSCCode)</text>
+                                }
+                            </div>
+                        </div>
+                        @*<div class="separator separator-dashed my-5"></div>*@
+                        <div class="col-xl-6">
+                            <h6 class="font-weight-bolder mb-3">Other Details:</h6>
+                            <div class="form-horizontal">
+                                <text>Designation : @Html.DisplayFor(model => model.Designation)</text>
+                                <br />
+                                <text>Salary Type : @Html.DisplayFor(model => model.salaryType)</text>
+                                <br />
+                                <text>Transaction Limit : @Html.DisplayFor(model => model.TransactionLimit)</text>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <!--begin::Wizard Form-->
+                    @using (Ajax.BeginForm("Delete", "StaffDataTable", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "DeleteAssetSuccess" }, new { @class = "form-horizontal", role = "form" }))
+                    {
+
+                <div class="form-actions no-color">
+                    @Html.HiddenFor(x => x.StaffId)
+                    <input type="submit" value="Delete" class="btn btn-danger" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.ActionLink("Back to List", "Index", null, new { data_dismiss = "modal" })
+                </div>
+                    }
+                    <!--end::Wizard Form-->
+                </div>
+            </div>
+
+      
+            <script src="/Content/dist/assets/plugins/global/plugins.bundle.js?v=7.0.4"></script>
+            <script src="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
+            <script src="/Content/dist/assets/js/scripts.bundle.js?v=7.0.4"></script>
+            
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+

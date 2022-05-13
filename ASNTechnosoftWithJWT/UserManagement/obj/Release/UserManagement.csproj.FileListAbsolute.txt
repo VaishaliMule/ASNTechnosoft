@@ -1,0 +1,16 @@
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\UserManagement.exe.config
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\UserManagement.exe
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\UserManagement.pdb
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\BussinessLayer.dll
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\TechnosoftModel.dll
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\EntityFramework.dll
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\BussinessLayer.pdb
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\BussinessLayer.dll.config
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\TechnosoftModel.pdb
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\TechnosoftModel.dll.config
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\bin\Release\EntityFramework.xml
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\obj\Release\UserManagement.csproj.AssemblyReference.cache
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\obj\Release\UserManagement.csproj.CoreCompileInputs.cache
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\obj\Release\UserManagement.csproj.CopyComplete
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\obj\Release\UserManagement.exe
+D:\WebAppWithJWT\ASNTechnosoftWithJWT\UserManagement\obj\Release\UserManagement.pdb

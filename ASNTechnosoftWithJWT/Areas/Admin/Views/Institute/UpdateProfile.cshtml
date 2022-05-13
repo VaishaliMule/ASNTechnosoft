@@ -1,0 +1,975 @@
+﻿@model ASNTechnosoftWithJWT.Areas.Admin.Models.InstituteModel
+
+@{
+    ViewBag.Title = "UpdateProfile";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<!--begin::Head-->
+<head>
+  
+    <link href="/Content/dist/assets/css/pages/wizard/wizard-1.css?v=7.0.4" rel="stylesheet" type="text/css">
+ 
+   
+
+
+   
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="/Content/dist/assets/js/pages/custom/wizard/wizard-1.js?v=7.0.4"></script>
+    <script src="/Content/dist/assets/js/pages/custom/wizard/wizard-1.min.js"></script>
+    <script src="/Content/dist/assets/js/pages/crud/forms/validation/form-controls.min.js"></script>
+    <script src="/Content/dist/assets/js/pages/features/miscellaneous/sweetalert2.js?v=7.0.4"></script>
+    <!--end::Page Scripts-->
+    <script type="text/javascript" language="javascript">
+        $('#DOB').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            orientation: "bottom left",
+            autoclose: true
+        });
+
+        var avatar5 = new KTImageInput('kt_image_5');
+
+        var avatar5 = new KTImageInput('kt_image_6');
+
+        $('#FirstName').keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+
+        $('#MiddleName').keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+
+        $('#LastName').keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+
+        $('#PAN').keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+
+        $('#Address').keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+
+        $('#IFSCCode').keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+
+        $('#Email').keydown(function () {
+            $(this).val($(this).val().toLowerCase());
+        });
+
+        $('.mobile-valid').on('keypress', function (e) {
+            var $this = $(this);
+            var regex = new RegExp("^[0-9\b]+$");//^[0-9\b]+$
+            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+            // for 10 digit number only
+            if ($this.val().length > 9) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.charCode < 54 && e.charCode > 47) {
+                if ($this.val().length == 0) {
+                    e.preventDefault();
+                    return false;
+                } else {
+                    return true;
+                }
+
+            }
+            if (regex.test(str)) {
+                return true;
+            }
+            e.preventDefault();
+            return false;
+        });
+
+        $('[type="adhaar-number"]').keyup(function () {
+            var value = $(this).val();
+            value = value.replace(/\D/g, "").split(/(?:([\d]{4}))/g).filter(s => s.length > 0).join("-");
+            $(this).val(value);
+        });
+
+        $('[type="adhaar-number"]').on("change, blur", function () {
+            var value = $(this).val();
+            var maxLength = $(this).attr("maxLength");
+            if (value != null) {
+                if (value.length != maxLength) {
+                    $(this).addClass("is-invalid");
+                    // $('Aadhar').html('Invalid Mobile Number');
+                } else {
+                    $(this).addClass("is-valid");
+                    $(this).removeClass("is-invalid");
+                }
+            }
+        });
+
+        $("#mobile").on("blur", function () {
+            var mobNum = $(this).val();
+            if (mobNum.length != 10) {
+                $('#mobilemessage').html('Invalid Mobile Number');
+                $('#mobilemessage').css('color', 'red');
+                return false;
+            }
+            else {
+                $('#mobilemessage').html(' ');
+            }
+        });
+
+        $("#AlternateMobile").change("blur", function () {
+            var mobNum = $(this).val();
+            if (mobNum != null) {
+                if (mobNum.length != 10) {
+                    $('#parentmobilemessage').html('Invalid Mobile Number');
+                    $('#parentmobilemessage').css('color', 'red');
+                    return false;
+                }
+                else {
+                    $('#parentmobilemessage').html(' ');
+                }
+            }
+
+        });
+        $('#Gender').select2({
+            placeholder: "Select your Gender",
+            allowClear: true
+        });
+
+        $('#MaritalStatus').select2({
+            placeholder: "Select your MarritalStatus",
+            allowClear: true
+        });
+
+        $('#ddlState').select2({
+            placeholder: "Select a State",
+            allowClear: true
+        });
+
+        $('#ddlDistrict').select2({
+            placeholder: "Select a District",
+            allowClear: true
+        });
+
+        $('#ddlTahsil').select2({
+            placeholder: "Select a Tahsil/Block",
+            allowClear: true
+        });
+
+        $('#ddlArea').select2({
+            placeholder: "Select a Location/Area",
+            allowClear: true
+        });
+
+
+        $('#ddlState').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/StaffDataTable/GetDistrict",
+                data: { stateId: $('#ddlState').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var district = "<select id='ddlDistrict'>";
+                    district = district + '<option value="">--Select District--</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        district = district + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
+                    }
+                    district = district + '</select>';
+                    $('#ddlDistrict').html(district);
+                }
+            });
+        });
+
+        $('#ddlDistrict').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/StaffDataTable/GetTahsil",
+                data: { districtId: $('#ddlDistrict').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var taluka = "<select id='ddlTahsil'>";
+                    taluka = taluka + '<option value="">--Select Block/Tahsil--</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        taluka = taluka + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
+                    }
+                    taluka = taluka + '</select>';
+                    $('#ddlTahsil').html(taluka);
+                }
+            });
+        });
+
+        $('#ddlTahsil').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/StaffDataTable/GetSubUrbanArea",
+                data: { talukaId: $('#ddlTahsil').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var area = "<select id='ddlArea'>";
+                    area = area + '<option value="">--Select Location/Area--</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        area = area + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
+                    }
+                    area = area + '</select>';
+                    $('#ddlArea').html(area);
+                }
+            });
+        });
+    </script>
+    <script>
+        var KTWizard1 = function () {
+            // Base elements
+            var _wizardEl;
+            var _formEl;
+            var _wizard;
+            var _validations = [];
+
+            // Private functions
+            var initWizard = function () {
+                // Initialize form wizard
+                _wizard = new KTWizard(_wizardEl, {
+                    startStep: 1, // initial active step number
+                    clickableSteps: true  // allow step clicking
+                });
+
+                // Validation before going to next page
+                _wizard.on('beforeNext', function (wizard) {
+                    // Don't go to the next step yet
+                    _wizard.stop();
+
+                    // Validate form
+                    var validator = _validations[wizard.getStep() - 1]; // get validator for currnt step
+                    validator.validate().then(function (status) {
+                        if (status == 'Valid') {
+                            _wizard.goNext();
+                            KTUtil.scrollTop();
+                        } else {
+                            Swal.fire({
+                                text: "Sorry, looks like there are some errors detected, please try again.",
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "Ok, got it!",
+                                customClass: {
+                                    confirmButton: "btn font-weight-bold btn-light"
+                                }
+                            }).then(function () {
+                                KTUtil.scrollTop();
+                            });
+                        }
+                    });
+                });
+
+                // Change event
+                _wizard.on('change', function (wizard) {
+                    KTUtil.scrollTop();
+                });
+            }
+
+            var initValidation = function () {
+                // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+                // Step 1
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+                            InstituteName: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Institute Name is required'
+                                    }
+                                }
+                            },
+                            FirstName: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'FirstName is required'
+                                    }
+                                }
+                            },
+                            LastName: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'LastName is required'
+                                    }
+                                }
+                            },
+                            Email: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Email is required'
+                                    }
+                                }
+                            },
+
+                            Gender: {
+                                validators: {
+                                    choice: {
+                                        min: 1,
+                                        message: 'Please select gender'
+                                    }
+                                }
+                            },
+
+                            MarritalStatus: {
+                                validators: {
+                                    choice: {
+                                        min: 1,
+                                        message: 'Please select Marital status'
+                                    }
+                                }
+                            },
+                            Mobile: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Mobile number is required'
+                                    }
+                                }
+                            },
+
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+
+                // Step 2
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+                            CAddress: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Address is required'
+                                    }
+                                }
+                            },
+                            StateId: {
+                                validators: {
+                                    notEmpty: {
+                                        min: 1,
+                                        message: 'Please select your State'
+                                    }
+                                }
+                            },
+                            DistrictId: {
+                                validators: {
+                                    notEmpty: {
+                                        min: 1,
+                                        message: 'Please select your District'
+                                    }
+                                }
+                            },
+                            TahsilId: {
+                                validators: {
+                                    notEmpty: {
+                                        min: 1,
+                                        message: 'Please select your Tahsil/Block'
+                                    }
+                                }
+                            },
+                            AreaId: {
+                                validators: {
+                                    notEmpty: {
+                                        min: 1,
+                                        message: 'Please select your Area/Location'
+                                    }
+                                }
+                            },
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+
+                // Step 3
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+
+                            //HaveBankDetails: {
+                            //    validators: {
+                            //        notEmpty: {
+                            //            min: 1,
+                            //            message: 'Please select an option'
+                            //        }
+
+                            //    }
+                            //},
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+
+                // Step 4
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+                            TransactionLimit: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Transaction limit required'
+                                    }
+                                }
+                            },
+                            DesignationId: {
+                                validators: {
+                                    notEmpty: {
+                                        min: 1,
+                                        message: 'Please select designation'
+                                    }
+                                }
+                            },
+                            salaryType: {
+                                validators: {
+                                    notEmpty: {
+                                        min: 1,
+                                        message: 'Please select salary type'
+                                    }
+                                }
+                            },
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+            }
+
+            return {
+                // public functions
+                init: function () {
+                    _wizardEl = KTUtil.getById('kt_wizard_v1');
+                    _formEl = KTUtil.getById('kt_form');
+
+                    initWizard();
+                    initValidation();
+                }
+            };
+        }();
+
+        jQuery(document).ready(function () {
+            KTWizard1.init();
+        });
+    </script>
+
+
+
+</head>
+<!--end::Head-->
+<body>
+    <div class="subheader py-2 py-lg-4 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Page Heading-->
+                <div class="d-flex align-items-baseline mr-5">
+                    <!--begin::Page Title-->
+                    <h5 class="text-dark font-weight-bold my-2 mr-5">Wizard 1</h5>
+                    <!--end::Page Title-->
+                    <!--begin::Breadcrumb-->
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="" class="text-muted">Pages</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="" class="text-muted">Wizard 1</a>
+                        </li>
+                    </ul>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Page Heading-->
+            </div>
+            <!--end::Info-->
+            <!--begin::Toolbar-->
+            <div class="d-flex align-items-center">
+                <!--begin::Actions-->
+                <a href="#" class="btn btn-light font-weight-bold btn-sm">Actions</a>
+                <!--end::Actions-->
+                <!--begin::Dropdown-->
+                <div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions" data-placement="left">
+                    <a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="svg-icon svg-icon-success svg-icon-2x">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Files/File-plus.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                    <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                    <path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z" fill="#000000" />
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right p-0 m-0">
+                        <!--begin::Navigation-->
+                        <ul class="navi navi-hover">
+                            <li class="navi-header font-weight-bold py-4">
+                                <span class="font-size-lg">Choose Label:</span>
+                                <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
+                            </li>
+                            <li class="navi-separator mb-3 opacity-70"></li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text">
+                                        <span class="label label-xl label-inline label-light-success">Customer</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text">
+                                        <span class="label label-xl label-inline label-light-danger">Partner</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text">
+                                        <span class="label label-xl label-inline label-light-warning">Suplier</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text">
+                                        <span class="label label-xl label-inline label-light-primary">Member</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text">
+                                        <span class="label label-xl label-inline label-light-dark">Staff</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="navi-separator mt-3 opacity-70"></li>
+                            <li class="navi-footer py-4">
+                                <a class="btn btn-clean font-weight-bold btn-sm" href="#">
+                                    <i class="ki ki-plus icon-sm"></i>Add new
+                                </a>
+                            </li>
+                        </ul>
+                        <!--end::Navigation-->
+                    </div>
+                </div>
+                <!--end::Dropdown-->
+            </div>
+            <!--end::Toolbar-->
+        </div>
+    </div>
+    <div class="container">
+        <div class="card card-custom">
+            <div class="card-body p-0">
+                <!--begin::Wizard-->
+                <div class="wizard wizard-1" id="kt_wizard_v1" data-wizard-state="step-first" data-wizard-clickable="false">
+                    <!--begin::Wizard Nav-->
+                    <div class="wizard-nav border-bottom">
+                        <div class="wizard-steps p-0 p-lg-10">
+                            <!--begin::Wizard Step 1 Nav-->
+                            <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-bus-stop icon-md-2x"></i>
+                                    <h3 class="wizard-title">1. Personal Details</h3>
+                                </div>
+                                <span class="svg-icon svg-icon-xl wizard-arrow">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)" x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                        </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                </span>
+                            </div>
+                            <!--end::Wizard Step 1 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-list icon-md-2x"></i>
+                                    <h3 class="wizard-title">2. Contact Details</h3>
+                                </div>
+                                <span class="svg-icon svg-icon-xl wizard-arrow">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)" x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                        </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                </span>
+                            </div>
+                            <!--begin::Wizard Step 2 Nav-->
+                            <!--end::Wizard Step 2 Nav-->
+                            <!--begin::Wizard Step 3 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-responsive icon-md-2x"></i>
+                                    <h3 class="wizard-title">4. Other Details</h3>
+                                </div>
+                                <span class="svg-icon svg-icon-xl wizard-arrow last">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)" x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                        </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Wizard Nav-->
+                    <!--begin::Wizard Body-->
+                    <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
+                        <div class="col-xl-12 col-xxl-7">
+                            <!--begin::Wizard Form-->
+                            @*<form class="form" id="kt_form" method="post" novalidate="novalidate" enctype="multipart/form-data">*@
+                            @using (Html.BeginForm("UpdateInstitute", "Institute", FormMethod.Post, new { @class = "form", role = "form", id = "kt_form", enctype = "multipart/form-data" }))
+                            {
+                                <!--begin::Wizard Step 1-->
+                                <div class="pb-5" id="step1" data-wizard-type="step-content" data-wizard-state="current">
+                                    <h3 class="mb-10 font-weight-bold text-dark">Personal Details</h3>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.InstituteName, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.InstituteName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter Your InstituteName", @id = "InstituteName", @required = "required", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.InstituteName, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter Your First Name", @id = "FirstName", @required = "required", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter Your Middle Name", @id = "MiddleName", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+
+                                                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter Your Last Name", @id = "LastName", @required = "required", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12 col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "Email", placeholder = "examples@email.com", required = "required", autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12 col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control datepicker" }, @id = "DOB", @autocomplete = "off-1" })
+                                                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+
+                                                @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.DropDownListFor(model => model.Gender, new SelectList(Enum.GetValues(typeof(GenderList))), "---Select Gender---", new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "Gender", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <!--begin::Select-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.MarritalStatus, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.DropDownListFor(model => model.MarritalStatus, new SelectList(Enum.GetValues(typeof(MaritalStatus))), "Select Marital Status", new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "MaritalStatus", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.MarritalStatus, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Select-->
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.Aadhar, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.Aadhar, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "Aadhar", placeholder = "Enter your Aadhar number", autocomplete = "off", type = "adhaar-number", maxLength = "14" } })
+                                                @Html.ValidationMessageFor(model => model.Aadhar, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <!--begin::Select-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.PAN, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.PAN, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "PAN", placeholder = "Enter your PAN number", autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.PAN, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Select-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Wizard Step 1-->
+                                <!--begin::Wizard Step 2-->
+                                <div class="pb-5" data-wizard-type="step-content">
+                                    <h4 class="mb-10 font-weight-bold text-dark">Enter the Details of your Contact</h4>
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control mobile-valid col-lg-6 col-md-9 col-sm-12 ", placeholder = "Enter Your Mobile number", @id = "mobile", @autocomplete = "off-1" } })
+                                                @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger", id = "mobilemessage" })
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.AlternateMobile, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.AlternateMobile, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12 mobile-valid", placeholder = "Enter Your parent mobile", @id = "AlternateMobile", autocomplete = "off-1" } })
+                                                @Html.ValidationMessageFor(model => model.AlternateMobile, "", new { @class = "text-danger", id = "parentmobilemessage" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "Address", required = "required", @autocomplete = "off-1" } })
+                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.StateNames, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.DropDownListFor(model => model.StateId, new SelectList(Model.StateNames, "Value", "Text"), "--Select State--", new { @id = "ddlState", @class = "form-control col-lg-6 col-md-9 col-sm-12", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.StateNames, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.DistrictNames, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.DropDownListFor(model => model.DistrictId, new SelectList(Model.DistrictNames, "Value", "Text"), "--Select District--", new { @id = "ddlDistrict", @class = "form-control col-lg-6 col-md-9 col-sm-12", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.DistrictNames, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.TahsilNames, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.DropDownListFor(model => model.TahsilId, new SelectList(Model.TahsilNames, "Value", "Text"), "--Select Tahsil/Block--", new { @id = "ddlTahsil", @class = "form-control col-lg-6 col-md-9 col-sm-12", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.TahsilNames, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.AreaNames, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.DropDownListFor(model => model.AreaId, new SelectList(Model.AreaNames, "Value", "Text"), "--Select Location/Area--", new { @id = "ddlArea", @class = "form-control col-lg-6 col-md-9 col-sm-12", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.AreaNames, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.PinCode, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                @Html.EditorFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "PinCode", autocomplete = "off-1" } })
+                                                @Html.ValidationMessageFor(model => model.PinCode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--end::Wizard Step 2-->
+                                <!--begin::Wizard Step 4-->
+                                <div class="pb-5" data-wizard-type="step-content">
+                                    <h4 class="mb-10 font-weight-bold text-dark">Setup Your Other details</h4>
+                                    @Html.HiddenFor(model => model.InstituteId)
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.PhotoUpload, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                <div class="col-lg-6 col-md-9 col-sm-12">
+                                                    <div class="image-input image-input-empty image-input-outline" id="kt_image_5" style="background-image: url(/Content/dist/assets/media/users/blank.png)">
+                                                        @if (Model.PhotoUpload != null)
+                                                        {
+                                                            <div class="image-input-wrapper" style="background-image: url('/UserImages/@Model.Photofilename')"></div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="image-input-wrapper" style="background-image: url(/Content/dist/assets/media/users/blank.png)"></div>
+                                                        }
+
+                                                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change Photo">
+                                                            <i class="fa fa-pen icon-sm text-muted"></i>
+                                                            <input type="file" name="PhotoImageFile" accept=".png, .jpg, .jpeg" />
+                                                            <input type="hidden" name="profile_avatar_remove" />
+                                                        </label>
+
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel Photo">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove Photo">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.LogoUpload, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-4 col-sm-12" })
+                                                <div class="col-lg-6 col-md-9 col-sm-12">
+                                                    <div class="image-input image-input-empty image-input-outline" id="kt_image_6" style="background-image: url(/Content/dist/assets/media/users/blank.png)">
+                                                        @if (Model.LogoUpload != null)
+                                                        {
+                                                            <div class="image-input-wrapper" style="background-image: url('/UserImages/@Model.Logofilename')"></div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="image-input-wrapper" style="background-image: url(/Content/dist/assets/media/users/blank.png)"></div>
+                                                        }
+
+                                                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change Logo">
+                                                            <i class="fa fa-pen icon-sm text-muted"></i>
+                                                            <input type="file" name="LogoImageFile" accept=".png, .jpg, .jpeg" />
+                                                            <input type="hidden" name="profile_avatar_remove" />
+                                                        </label>
+
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel Logo">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove Logo">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--end::Wizard Step 4-->
+                                <!--begin::Wizard Actions-->
+                                <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                                    <div class="mr-2">
+                                        <button type="button" id="prevButton" class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-prev">
+                                            <span class="svg-icon svg-icon-md mr-1">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                                        <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
+                                                        <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>Previous
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <input type="submit" name="submitBtn" id="submitBtn" value='Save' class="btn btn-success font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-submit" />
+                                        @*<button type="button" class="btn btn-success font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-submit" name="submitBtn">Submit</button>*@
+                                        <button type="submit" id="nextButton" name="submitButton" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
+                                            Next
+                                            <span class="svg-icon svg-icon-md ml-1">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                        </button>
+
+                                        @*<input type="submit" id="submitButton" name="submitButton" value='Next' class="btn btn-primary font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-next" />*@
+
+                                    </div>
+                                </div>
+                                <!--end::Wizard Actions-->
+                            }@*</form>*@
+                            <!--end::Wizard Form-->
+                        </div>
+                    </div>
+
+                    <!--end::Wizard Body-->
+                </div>
+            </div>
+            <!--end::Wizard-->
+        </div>
+    </div>
+</body>
+ 
+   
+
+               
+           
+
+
+   
+
+
+

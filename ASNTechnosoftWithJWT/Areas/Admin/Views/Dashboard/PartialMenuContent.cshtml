@@ -1,0 +1,174 @@
+﻿@model TechnosoftModel.User
+<div class="header-navs header-navs-left" id="kt_header_navs">
+    <!--begin::Tab Navs(for tablet and mobile modes)-->
+    <ul class="header-tabs p-5 p-lg-0 d-flex d-lg-none nav nav-bold nav-tabs" role="tablist" id="mytab">
+        <li class="nav-item mr-3">
+            <a href="#" class="nav-link py-4 px-6 active" data-toggle="tab"  data-target="#kt_header_tab_5" role="tab" aria-selected="true">Dashboard</a>
+        </li>
+        <li class="nav-item mr-3">
+            <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_4" role="tab">E-Wallet</a>
+        </li>
+        <li class="nav-item mr-3">
+            <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_3" role="tab">Masters</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_1" role="tab">Admission</a>
+        </li>
+        <li class="nav-item mr-3">
+            <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Reports</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+
+        <style type="text/css">
+            a[disabled="disabled"] {
+                pointer-events: none;
+            }
+        </style>
+
+        @if (ViewBag.MenuContent == true)
+        {
+            <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_5">
+                <!--begin::Menu-->
+                <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                    <!--begin::Nav-->
+                    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-dashboard"></i>Dashboard</a>
+                    </div>
+                    <!--end::Nav-->
+                </div>
+                <!--end::Menu-->
+            </div>
+            <!--begin::Tab Pane-->
+            <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_1">
+                <!--begin::Menu-->
+                <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                    <!--begin::Nav-->
+                    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                        @*<a href="@Url.Action("Index", "Home")" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-dashboard"></i>Dashboard</a>*@
+                        <a href="@Url.Action("Index", "Students")" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user-1"></i>Student Registration</a>
+                        <a href="@Url.Action("Index", "Enquiry")" class="btn btn-primary font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-digital-marketing"></i>Enquiry</a>
+                        <a href="@Url.Action("Index", "Admission")" class="btn btn-danger font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user"></i>Admission</a>
+                        <a href="@Url.Action("SearchByCourseBatch", "Admission")" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-price-tag"></i>Fees Receipt</a>
+                        <a href="@Url.Action("SearchForFileUpload", "Admission")" class="btn btn-dark font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-photo-camera"></i>Upload Photo/Sign</a>
+                        <a href="@Url.Action("Index", "Followup")" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-calendar-3"></i>Enquiry Followup</a>
+                        <a href="@Url.Action("Index", "FeesFollowup")" class="btn btn-primary font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-price-tag"></i>Fee Followup</a>
+                    </div>
+                    <!--end::Nav-->
+                </div>
+                <!--end::Menu-->
+            </div>
+            <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_2">
+                <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                    <!--begin::Actions-->
+                    <a href="#" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user-1"></i>View Enquiry</a>
+                    <a href="#" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-dashboard"></i>View Admission</a>
+
+                    <!--end::Actions-->
+                </div>
+                @*<div class="d-flex align-items-center">
+
+                        <a href="#" class="btn btn-danger font-weight-bold my-2 my-lg-0">Generate Reports</a>
+
+                    </div>*@
+            </div>
+            <!--End::Tab Pane-->
+            <!--begin::Tab Pane-->
+            <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_3">
+                <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                    <!--begin::Actions-->
+                    <a href="@Url.Action("Index", "Course")" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-dashboard"></i>Course</a>
+                    <a href="@Url.Action("Index", "Batch")" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user-1"></i>Batch</a>
+                    <a href="@Url.Action("Index", "StaffDataTable")" class="btn btn-primary font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user-1"></i>User</a>
+                    <!--end::Actions-->
+                </div>
+
+            </div>
+            <!--End::Tab Pane-->
+        }
+        else
+        {
+            <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_5">
+                <!--begin::Menu-->
+                <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                    <!--begin::Nav-->
+                    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                        <a href="@Url.Action("Index", "Home")" disabled="disabled" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-dashboard"></i>Dashboard</a>
+                    </div>
+                    <!--end::Nav-->
+                </div>
+                <!--end::Menu-->
+            </div>
+            <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_1">
+                <!--begin::Menu  class="tab-pane py-5 p-lg-0 show active"-->
+                <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                    <!--begin::Nav-->
+                    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                        <a href="@Url.Action("Index", "Students")" disabled="disabled" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user-1"></i>Student Registration</a>
+                        <a href="@Url.Action("Index", "Enquiry")" disabled="disabled" class="btn btn-primary font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-digital-marketing"></i>Enquiry</a>
+                        <a href="@Url.Action("Index", "Admission")" disabled="disabled" class="btn btn-danger font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user"></i>Admission</a>
+                        <a href="@Url.Action("SearchByCourseBatch", "Admission")" disabled="disabled" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-price-tag"></i>Fees Receipt</a>
+                        <a href="@Url.Action("SearchForFileUpload", "Admission")" disabled="disabled" class="btn btn-dark font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-photo-camera"></i>Upload Photo/Sign</a>
+                        <a href="@Url.Action("Index", "Followup")" disabled="disabled" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-calendar-3"></i>Enquiry Followup</a>
+                        <a href="@Url.Action("Index", "FeesFollowup")" disabled="disabled" class="btn btn-primary font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-price-tag"></i>Fees Followup</a>
+                    </div>
+                    <!--end::Nav-->
+                </div>
+                <!--end::Menu-->
+            </div>
+            <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_2">
+                <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                    <!--begin::Actions-->
+                    <a href="#" disabled="disabled" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user-1"></i>View Enquiry</a>
+                    <a href="#" disabled="disabled" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-dashboard"></i>View Admission</a>
+
+                    <!--end::Actions-->
+                </div>
+                @*<div class="d-flex align-items-center">
+
+                        <a href="#" class="btn btn-danger font-weight-bold my-2 my-lg-0">Generate Reports</a>
+
+                    </div>*@
+            </div>
+            <!--End::Tab Pane-->
+            <!--begin::Tab Pane-->
+            <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_3">
+                <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                    <!--begin::Actions-->
+                    <a href="@Url.Action("Index", "Course")" disabled="disabled" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-dashboard"></i>Course</a>
+                    <a href="@Url.Action("Index", "Batch")" disabled="disabled" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user-1"></i>Batch</a>
+                    <a href="@Url.Action("Index", "StaffDataTable")" disabled="disabled" class="btn btn-primary font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-user-1"></i>User</a>
+                    <!--end::Actions-->
+                </div>
+
+            </div>
+            <!--End::Tab Pane-->
+        }
+
+
+        <!--begin::Tab Pane-->
+        <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_4">
+            <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                <!--begin::Actions-->
+                <a href="@Url.Action("Index", "PaytmPayment")" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-price-tag"></i>Add Money</a>
+                <a href="@Url.Action("MyTransactions", "PaytmPayment")" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-book"></i>View Statement</a>
+                <a href="@Url.Action("Index", "EOI")" class="btn btn-primary font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-digital-marketing"></i>Expression of Interest</a>
+            </div>
+
+        </div>
+        <!--End::Tab Pane-->
+    </div>
+</div>
+@*<script>
+    $(document).ready(function () {
+        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+
+        var activeTab = localStorage.getItem('activeTab');
+        if (activeTab) {
+            $('#mytab a[href="' + activeTab + '"]').tab('show');
+        }
+
+    });
+</script>*@

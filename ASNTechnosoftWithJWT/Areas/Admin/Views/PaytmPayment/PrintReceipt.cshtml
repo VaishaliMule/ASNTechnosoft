@@ -1,0 +1,260 @@
+﻿@model ASNTechnosoftWithJWT.Areas.Admin.Models.StudentModel
+@{
+    ViewBag.Title = "PrintReceipt";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<!--begin::Head-->
+<head>
+    <base href="../../../">
+    <meta charset="utf-8">
+    <title>Metronic | Wizard 1</title>
+    <meta name="description" content="Wizard examples">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <!--end::Fonts-->
+    <!--begin::Page Custom Styles(used by this page)-->
+    <link href="/Content/dist/assets/css/pages/wizard/wizard-1.css?v=7.0.4" rel="stylesheet" type="text/css">
+    <!--end::Page Custom Styles-->
+    <!--begin::Global Theme Styles(used by all pages)-->
+    <link href="/Content/dist/assets/plugins/global/plugins.bundle.css?v=7.0.4" rel="stylesheet" type="text/css">
+    <link href="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.4" rel="stylesheet" type="text/css">
+    <link href="/Content/dist/assets/css/style.bundle.css?v=7.0.4" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="/Content/dist/assets/media/logos/ASNLogo.jpg" />
+    <style>
+        /*@@media print {
+            .graph-img img {
+                display: inline;
+            }
+        }*/
+    </style>
+</head>
+<!--end::Head--><!--end::Head-->
+<!--begin::Body-->
+
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
+    <div class="container">
+        <!-- begin::Card-->
+        <div class="card card-custom overflow-hidden">
+            <div class="card-body p-4">
+                <!-- begin: Invoice-->
+                <div id="dvprint">
+                    <!-- begin: Invoice header-->
+                    <div class="row justify-content-center bgi-size-cover bgi-no-repeat">
+                        <div class="col-md-9">
+                            <div class="d-flex justify-content-between flex-column">
+                                <table class="table table-secondary table-checkable no-footer collapsed">
+                                    <tr>
+                                        <td>
+                                            <div class="symbol symbol-100 symbol-xxl-100 align-self-center">
+                                                @if (Model.LogoUpload != null)
+                                                {
+
+                                                    <img src="/UserImages/@Model.Logofilename " class="symbol-label" />
+                                                    @*<div class="symbol-label" style="background-image: url('/UserImages/@Model.Photofilename')"></div>*@
+                                                }
+                                                else
+                                                {
+                                                    @*<div class="symbol-label" style="background-image: url(/Content/dist/assets/media/users/blank.png)"></div>*@
+                                                    <img alt="Logo" src="~/Content/dist/assets/media/logos/ASNLogo1.png" class="max-h-125px" />
+                                                }
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="symbol symbol-100 symbol-xxl-100 align-right">
+                                                <span class="text-dark text-weight-bold font-size-h3">@Html.DisplayFor(model => model.InstituteName)</span>
+                                                <br />
+                                                <span class="font-weight-bolder mb-2">Address :</span>
+                                                <span class="text-dark">@Html.DisplayFor(model => model.InstituteAddress, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12" } })</span>
+
+                                            </div>
+                                        </td>
+
+
+                                        <td>
+
+                                            <h2 class="display-4 font-weight-boldest center-block">Fee Receipt</h2>
+                                            <span class="font-weight-bolder mb-2">Invoice NO. :</span>
+                                            <span class="text-dark mb-2">@Html.DisplayFor(model => model.FeesId, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @readonly = "readonly", id = "feesid" } })</span>
+                                            <br />
+                                            <span class="font-weight-bolder mb-2">Date :</span>
+                                            <span class="text-dark mb-2">@Html.DisplayFor(model => model.PaidDate, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @readonly = "readonly", id = "paiddate" } })</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: Invoice header-->
+                    <!-- begin: Invoice body-->
+                    <div class="row justify-content-center">
+                        <div class="col-md-9">
+                            <div>
+                                <table>
+                                    <tr>
+                                        <th>Student Name :</th>
+                                        <td>@Html.DisplayFor(model => model.NameOnCertificate)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date of Birth :</th>
+                                        <td>@Html.DisplayFor(model => model.DOB)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address :</th>
+                                        <td>@Html.DisplayFor(model => model.Address)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mobile No. :</th>
+                                        <td>@Html.DisplayFor(model => model.Mobile) / @Html.DisplayFor(model => model.ParentMobile)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email :</th>
+                                        <td>@Html.DisplayFor(model => model.Email)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Course and Batch Name :</th>
+                                        <td>@Html.DisplayFor(model => model.BatchName)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br />
+                            <div>
+                                <table class="table table-bordered table-hover">
+                                    <tr style="background-color:cadetblue">
+                                        <th>Course Fee</th>
+                                        <th>Paid Fee</th>
+                                        <th>Discount</th>
+                                        <th>Balance Fee</th>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayFor(model => model.TotalFees)</td>
+                                        <td>@Html.DisplayFor(model => model.TotalPaidFees)</td>
+                                        <td>@Html.DisplayFor(model => model.Discount)</td>
+                                        <td>@Html.DisplayFor(model => model.BalanceAmount)</td>
+
+                                    </tr>
+                                </table>
+                            </div>
+
+                            @*<br />
+                                <div>
+                                    <table class="table table-bordered table-hover">
+                                        <tr style="background-color:cadetblue">
+                                            <th>SN</th>
+                                            <th>Date of Payment</th>
+                                            <th>Fee Amount</th>
+                                            <th>Paid Amount</th>
+                                            <th>Discount</th>
+                                            <th>Balance Amount</th>
+                                            <th>Received By Staff</th>
+                                        </tr>
+                                        @foreach (var followup in Model.StudentsPrintFeesReceipts)
+                                        {
+                                            <tr>
+                                                <td>@followup.ID</td>
+                                                <td>@followup.DATEOFPAYMENT</td>
+                                                <td>@followup.FEESAMOUNT</td>
+                                                <td>@followup.PAIDAMOUNT</td>
+                                                <td>@followup.DISCOUNT</td>
+                                                <td>@followup.BALANCEAMOUNT</td>
+                                                <td>@followup.RECEIVEDBYSTAFF</td>
+                                            </tr>
+
+                                        }
+                                    </table>
+                                </div>*@
+                        </div>
+                    </div>
+                    <!-- end: Invoice body-->
+                    <!-- begin: Invoice footer-->
+                    <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0">
+                        <div class="col-md-9">
+                            <div class="d-flex justify-content-between flex-column flex-md-row font-size-lg">
+                                <div class="d-flex flex-column mb-10 mb-md-0">
+
+
+                                </div>
+                                <div class="d-flex flex-column text-md-right">
+                                    <div class="font-weight-bolder font-size-lg mb-3">RECEIVED BY</div>
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <span class="font-size-h2 font-weight-boldest text-danger mb-1">@Html.DisplayFor(model => model.StaffName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @readonly = "readonly", id = "staff" } })</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: Invoice footer-->
+                </div>
+                <!-- begin: Invoice action-->
+                <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                    <div class="col-md-9">
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-bg-primary font-weight-bold text-uppercase" onclick="window.print('dvprint');">Print</button>
+                            <a href="@Url.Action("Index","Home")" id="backLink" class="btn btn-bg-danger font-weight-bold text-uppercase">Go to Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: Invoice action-->
+                <!-- end: Invoice-->
+            </div>
+        </div>
+        <!-- end::Card-->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    @*<script type="text/javascript">
+        $('#slct').select2({
+            placeholder: "Select Mode of Payment",
+            allowClear: true
+        });
+    </script>*@
+    <script type="text/javascript">
+        function printDiv(data) {
+            var prtContent = document.getElementById(data);
+            var WinPrint =
+                window.open('', '', 'left=0,top=0,width=1,height=1,toolbar=0,scrollbars=0,status=0');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+
+        }
+
+    </script>
+    <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+
+
+    @if (TempData["ReceiptMessage"] != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                @Html.Raw(TempData["Message"]);
+            });
+        </script>
+        TempData["Message"] = null;
+    }
+</body>
+
+
+
+
+
+
+
+
+
+<!--end::Body-->
+</html>
+
+

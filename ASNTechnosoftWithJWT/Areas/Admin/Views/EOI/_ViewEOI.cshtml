@@ -1,0 +1,100 @@
+﻿
+@model ASNTechnosoftWithJWT.Areas.Admin.Models.EOIModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<!--begin::Head-->
+<head>
+    <base href="../../../">
+    <meta charset="utf-8" />
+    <title>ASNIMS | EOI</title>
+    <meta name="description" content="Wizard examples" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  
+    <link href="/Content/dist/assets/plugins/global/plugins.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <link href="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <link href="/Content/dist/assets/css/style.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="/Content/dist/assets/media/logos/ASNLogo.jpg" />
+    <style>
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">EOI Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 600px;">
+                <!--begin::Main-->
+                <!--begin::Wizard-->
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-xxl-7">
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Institute Name</th>
+                                <td> @Html.DisplayFor(model => model.InstituteName)</td>
+                            </tr>
+                            <tr>
+                                <th>Subcribed Service Name</th>
+                                <td>@Html.DisplayFor(model => model.ServiceName)</td>
+                            </tr>
+                            <tr>
+                                <th>Subcribed Date</th>
+                                <td>@Html.DisplayFor(model => model.SubcribedDate)</td>
+                            </tr>
+                            <tr>
+                                <th>Quantity</th>
+                                <td>@Html.DisplayFor(model => model.Quantity)</td>
+                            </tr>
+                            <tr>
+                                <th>Amount</th>
+                                <td>@Html.DisplayFor(model => model.Amount)</td>
+                            </tr>
+                            <tr>
+                                <th>Renewal Date</th>
+                                <td>@Html.DisplayFor(model => model.RenewalDate)</td>
+                            </tr>
+                            
+                        </table>
+
+
+                    </div>
+                </div>
+
+                <!--end::Page-->
+                <!--end::Main-->
+
+                <script>var HOST_URL = "https://keenthemes.com/metronic/tools/preview";</script>
+                <!--begin::Global Config(global config for global JS scripts)-->
+                <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#6993FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+                <!--end::Global Config-->
+                <!--begin::Global Theme Bundle(used by all pages)-->
+                <script src="/Content/dist/assets/plugins/global/plugins.bundle.js?v=7.0.4"></script>
+                <script src="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
+                <script src="/Content/dist/assets/js/scripts.bundle.js?v=7.0.4"></script>
+                <!--end::Global Theme Bundle-->
+                <!--begin::Page Scripts(used by this page)-->
+                <!--end::Page Scripts-->
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+<!--end::Body-->
+</html>
+

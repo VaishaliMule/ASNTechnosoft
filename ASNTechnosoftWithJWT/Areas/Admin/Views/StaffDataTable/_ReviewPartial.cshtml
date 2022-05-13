@@ -1,0 +1,163 @@
+﻿@model ASNTechnosoftWithJWT.Areas.Admin.Models.StaffWizardFormModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  
+    <link href="/Content/dist/assets/css/pages/wizard/wizard-1.css?v=7.0.4" rel="stylesheet" type="text/css" />
+   
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body>
+    <div class="modal-dialog modal-lg modal-xl modal-dialog-scrollable" role="document" id="createStaff">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 600px;">
+                <!--begin::Main-->
+                <div class="d-flex flex-column flex-root">
+                    <!--begin::Page-->
+                    <div class="d-flex flex-row flex-column-fluid page">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                            <!--begin::Content-->
+                            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+                                <!--begin::Entry-->
+                                <div class="d-flex flex-column-fluid">
+                                    <!--begin::Container-->
+                                    <div class="container">
+                                        <div class="card card-custom">
+                                            <div class="card-body p-0">
+                                                <!--begin::Wizard-->
+                                                <div class="wizard wizard-1" id="kt_wizard_v1" data-wizard-state="step-first" data-wizard-clickable="false">
+
+                                                    <!--begin::Wizard Body-->
+                                                    <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
+                                                        <div class="col-xl-12 col-xxl-7">
+                                                            <!--begin::Wizard Form-->
+                                                            <form class="form" id="kt_form">
+                                                                @Html.HiddenFor(model => model.StaffId)
+                                                                <!--begin::Wizard Step 5-->
+                                                                <h6 class="font-weight-bolder mb-3">Personal Details:</h6>
+                                                                <dl class="row-horizontal">
+                                                                    <text>Name : @Html.DisplayFor(model => model.FirstName) &nbsp;@Html.DisplayFor(model => model.MiddleName)&nbsp; @Html.DisplayFor(model => model.LastName)</text>
+                                                                    <br />
+                                                                    <text>Email : @Html.DisplayFor(model => model.Email)</text>
+                                                                    <br />
+                                                                    <text>Date of Birth : @Html.DisplayFor(model => model.DOB)</text>
+                                                                    <br />
+                                                                    <text>Qualification : @Html.DisplayFor(model => model.Qualification)</text>
+                                                                    <br />
+                                                                    <text>Aadhar No. : @Html.DisplayFor(model => model.Aadhar)</text>
+                                                                    <br />
+                                                                    <text>PAN No. :  @Html.DisplayFor(model => model.PAN)</text>
+                                                                </dl>
+                                                                <div class="separator separator-dashed my-5"></div>
+
+                                                                <h6 class="font-weight-bolder mb-3">Contact Details:</h6>
+                                                                <div class="form-horizontal">
+                                                                    <div class="row">
+                                                                        <div class="col-xl-6">
+                                                                            <text>Mobile number: @Html.DisplayFor(model => model.Mobile)</text>
+                                                                            <h6>Current Address</h6>
+                                                                            <text>Address:@Html.DisplayFor(model => model.CAddress),&nbsp; @Html.DisplayFor(model => model.CLocationArea)</text>
+                                                                            <br /><text>State :@Html.DisplayFor(model => model.CState)</text>
+                                                                            <br /><text>Dist : @Html.DisplayFor(model => model.CDistrict)</text>
+                                                                            <br /><text>Tahsil/Block :@Html.DisplayFor(model => model.CTaluka)</text>
+                                                                            <br /> <text>Pin Code : @Html.DisplayFor(model => model.PinCode)</text>
+
+
+                                                                        </div>
+                                                                        <div class="col-xl-6">
+                                                                            <text>Alternate Mobile number: @Html.DisplayFor(model => model.AlternateMobile)</text>
+                                                                            <h6>Permanent Address</h6>
+                                                                            <text>Address:@Html.DisplayFor(model => model.PAddress),&nbsp; @Html.DisplayFor(model => model.PLocationArea)</text>
+                                                                            <br /><text>State :@Html.DisplayFor(model => model.PState)</text>
+                                                                            <br /><text>Dist : @Html.DisplayFor(model => model.PDistrict)</text>
+                                                                            <br /><text>Tahsil/Block :@Html.DisplayFor(model => model.PTaluka)</text>
+                                                                            <br /><text>Pin Code : @Html.DisplayFor(model => model.PPinCode)</text>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="separator separator-dashed my-5"></div>
+                                                                <div class="row">
+                                                                    <div class="col-xl-6">
+                                                                        <h6 class="font-weight-bolder mb-3">Bank Details:</h6>
+                                                                        <dl class="dl-horizontal">
+                                                                            <text>Have Bank Details? : @Html.DisplayFor(model => model.HaveBankDetails)</text>
+                                                                            <br />
+                                                                            @if (Model.HaveBankDetails == "No")
+                                                                            {
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <text>Account Holder Name : @Html.DisplayFor(model => model.AccountHolderName)</text>
+                                                                                <br />
+                                                                                <text>Bank Account No :@Html.DisplayFor(model => model.BankAccountNo)</text>
+                                                                                <br />
+                                                                                <text>Bank Name: @Html.DisplayFor(model => model.BankName)</text>
+                                                                                <br />
+                                                                                <text>Branch : @Html.DisplayFor(model => model.BankBranch)</text>
+                                                                                <br />
+                                                                                <text>IFSC Code :@Html.DisplayFor(model => model.IFSCCode)</text>
+                                                                            }
+
+                                                                        </dl>
+                                                                    </div>
+                                                                    @*<div class="separator separator-dashed my-5"></div>*@
+                                                                    <div class="col-xl-6">
+                                                                        <h6 class="font-weight-bolder mb-3">Other Details:</h6>
+                                                                        <dl class="dl-horizontal">
+                                                                            <text>Designation : @Html.DisplayFor(model => model.Designation)</text>
+                                                                            <br />
+                                                                            <text>Salary Type : @Html.DisplayFor(model => model.salaryType)</text>
+                                                                            <br />
+                                                                            <text>Transaction Limit : @Html.DisplayFor(model => model.TransactionLimit)</text>
+                                                                        </dl>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <!--end::Wizard Form-->
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Wizard Body-->
+                                                </div>
+                                            </div>
+                                            <!--end::Wizard-->
+                                        </div>
+                                    </div>
+                                    <!--end::Container-->
+                                </div>
+                                <!--end::Entry-->
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Page-->
+                </div>
+                <!--end::Main-->
+
+                
+                <script src="/Content/dist/assets/plugins/global/plugins.bundle.js?v=7.0.4"></script>
+                <script src="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
+                <script src="/Content/dist/assets/js/scripts.bundle.js?v=7.0.4"></script>
+              
+            </div>
+
+        </div>
+    </div>
+</body>
+<!--end::Body-->
+</html>

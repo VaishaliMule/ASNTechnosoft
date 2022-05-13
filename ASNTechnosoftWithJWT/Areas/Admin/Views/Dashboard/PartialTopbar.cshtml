@@ -1,0 +1,29 @@
+﻿@model TechnosoftModel.User 
+
+    <div class="topbar-item">
+        <div class="btn btn-icon btn-hover-transparent-white w-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
+            <div class="d-flex flex-column text-right pr-3">
+                <span class="text-dark font-weight-bold font-size-sm d-none d-md-inline">@Model.FirstName @Model.LastName</span>
+                <span class="text-white font-weight-bolder font-size-sm d-none d-md-inline">
+                    @if (ViewBag.Designation != null)
+                    {
+                        <a class="text-white font-weight-bolder font-size-sm mt-2">
+                            @ViewBag.Designation
+                        </a>
+                    }
+                </span>
+            </div>
+            <span class="symbol symbol-35">
+
+                @if (Model.PhotoUpload != null)
+                {
+                    <span class="symbol-label" style="background-image: url('/UserImages/@Model.PhotpFIleName')"></span>
+                }
+                else
+                {
+                    <span class="symbol-label" style="background-image: url(/Content/dist/assets/media/users/blank.png)"></span>
+                }
+                @*<span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30">S</span>*@
+            </span>
+        </div>
+    </div>

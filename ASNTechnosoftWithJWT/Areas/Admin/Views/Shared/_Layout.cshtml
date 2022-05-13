@@ -1,0 +1,339 @@
+﻿
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <base href="">
+    <meta charset="utf-8" />
+    <title>IMS | ASN Technosoft</title>
+    <meta name="description" content="Updates and statistics" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link href="/Content/dist/assets/plugins/global/plugins.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <link href="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <link href="/Content/dist/assets/css/style.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="/Content/dist/assets/media/logos/ASNLogo.jpg" />
+
+
+
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>*@
+
+    <style type="text/css">
+        /*.loadingmodal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            z-index: 99;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            min-height: 100%;
+            width: 100%;
+        }*/
+
+        .loading {
+            font-family: Arial;
+            font-size: 10pt;
+            border: 5px solid #67CFF5;
+            width: 200px;
+            height: 100px;
+            display: none;
+            position: fixed;
+            background-color: White;
+            z-index: 999;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+        }
+    </style>
+
+</head>
+<body id="kt_body" class="header-fixed header-mobile-fixed page-loading" style="overflow:auto">
+    <div class="loading" id="loader" align="center">
+        Loading. Please wait.<br />
+        <br />
+        <img src="https://www.aspsnippets.com/demos/loader.gif" alt="" />
+    </div>
+    <script type="text/javascript">
+        var modal, loading;
+        function ShowProgress() {
+            modal = document.createElement("DIV");
+            modal.className = "modal";
+            document.body.appendChild(modal);
+            loading = document.getElementsByClassName("loading")[0];
+            loading.style.display = "block";
+            var top = Math.max(window.innerHeight / 2 - loading.offsetHeight / 2, 0);
+            var left = Math.max(window.innerWidth / 2 - loading.offsetWidth / 2, 0);
+            loading.style.top = top + "px";
+            loading.style.left = left + "px";
+        };
+        ShowProgress();
+    </script>
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                    "body").style.visibility = "hidden";
+                document.querySelector(
+                    "#loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                    "#loader").style.display = "none";
+                document.querySelector(
+                    "body").style.visibility = "visible";
+            }
+        };
+    </script>
+
+
+
+
+
+
+    <div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
+        <a href="http://asntechnosoft.com/">
+            <img alt="Logo" src="~/Content/dist/assets/media/logos/ASNLogo3.jpg" class="max-h-5px" />
+        </a>
+        <div class="d-flex align-items-center">
+            <button class="btn p-0 burger-icon burger-icon-left ml-4" id="kt_header_mobile_toggle">
+                <span></span>
+            </button>
+            <button class="btn p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+                <span class="svg-icon svg-icon-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24" />
+                            <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                            <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                        </g>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="d-flex flex-column flex-root">
+        <div class="d-flex flex-row flex-column-fluid page">
+            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                <div id="kt_header" class="header flex-column header-fixed">
+                    <div class="header-top">
+                        <div class="container">
+                            <div class="d-none d-lg-flex align-items-center mr-3">
+                                <a href="http://asntechnosoft.com/" class="mr-20" target="_blank">
+                                    <img alt="Logo" src="~/Content/dist/assets/media/logos/IMsLogo2.png" class="max-h-lg-35px" />
+                                </a>
+                                <ul class="header-tabs nav align-self-end font-size-lg" role="tablist" id="myTab">
+                                    <!--begin::Item-->
+                                    <li class="nav-item">
+                                        <a href="#kt_header_tab_1" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_1" role="tab">Dashboard</a>
+                                    </li>
+                                    <!--end::Item-->
+                                    <!--begin::Item-->
+                                    <li class="nav-item mr-3">
+                                        <a href="#kt_header_tab_2" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">E-wallet</a>
+                                    </li>
+
+                                    <li class="nav-item mr-3">
+                                        <a href="#kt_header_tab_5" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_5" role="tab">EOI</a>
+                                    </li>
+                                    <li class="nav-item mr-3">
+                                        <a href="#kt_header_tab_3" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_3" role="tab">Services</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="topbar bg-primary">
+                                <div class="dropdown">
+                                    <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
+                                        <div class="btn btn-icon btn-hover-transparent-white btn-lg btn-dropdown mr-1">
+                                            <span class="svg-icon svg-icon-xl">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24" />
+                                                        <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                        <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero" />
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
+                                        <div class="quick-search quick-search-dropdown" id="kt_quick_search_dropdown">
+                                            <form method="get" class="quick-search-form">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <span class="svg-icon svg-icon-lg">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <rect x="0" y="0" width="24" height="24" />
+                                                                        <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                                        <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero" />
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Search..." />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="quick-search-close ki ki-close icon-sm text-muted"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="quick-search-wrapper scroll" data-scroll="true" data-height="325" data-mobile-height="200"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                @{Html.RenderAction("PartialTopbar", "Dashboard");}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-bottom">
+                        <div class="container">
+                            @*<div class="header-navs header-navs-left" id="kt_header_navs">*@
+                            @*@{Html.RenderAction("PartialMenuContent", "Home");}*@
+                            @*</div>*@
+
+                            <div class="header-navs header-navs-left" id="kt_header_navs">
+                                <!--begin::Tab Navs(for tablet and mobile modes)-->
+
+                                <ul class="header-tabs p-5 p-lg-0 d-flex d-lg-none nav nav-bold nav-tabs" role="tablist" id="mytab">
+
+                                    <li class="nav-item mr-2">
+                                        <a href="#kt_header_tab_1" class="nav-link btn btn-clean" data-toggle="tab" data-target="#kt_header_tab_1" role="tab">Dashboard</a>
+                                    </li>
+
+                                    <li class="nav-item mr-2">
+                                        <a href="#kt_header_tab_2" class="nav-link btn btn-clean" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">E-Wallet</a>
+                                    </li>
+
+
+
+                                    <li class="nav-item mr-2">
+                                        <a href="#kt_header_tab_5" class="nav-link btn btn-clean" data-toggle="tab" data-target="#kt_header_tab_5" role="tab">EOI</a>
+                                    </li>
+                                    <li class="nav-item mr-2">
+                                        <a href="#kt_header_tab_3" class="nav-link btn btn-clean" data-toggle="tab" data-target="#kt_header_tab_3" role="tab">Services</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <!--begin::Tab Pane-->
+                                    <div class="tab-pane py-5 p-lg-0 justify-content-between" id="kt_header_tab_1">
+                                        <!--begin::Menu-->
+                                        <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                                            <!--begin::Nav-->
+                                            <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                                                <a href="@Url.Action("Index", "Dashboard")" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-dashboard"></i>Dashboard</a>
+                                            </div>
+                                            <!--end::Nav-->
+                                        </div>
+                                        <!--end::Menu-->
+                                    </div>
+                                    <!--begin::Tab Pane-->
+                                    <!--begin::Tab Pane-->
+                                    <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_2">
+                                        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+
+                                            <a href="@Url.Action("Index", "PaytmPayment")" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-price-tag"></i>Add Money</a>
+                                            <a href="@Url.Action("MyTransactions", "PaytmPayment")" class="btn btn-success font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon-book"></i>View Statement</a>
+
+
+                                        </div>
+
+                                    </div>
+                                    <!--begin::Tab Pane-->
+
+
+                                    <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_5">
+                                        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                                            <!--begin::Actions-->
+                                            <a href="@Url.Action("Index", "EOI")" class="btn btn-primary font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-digital-marketing"></i>Expression of Interest</a>
+
+                                            <!--end::Actions-->
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane p-5 p-lg-0 justify-content-between" id="kt_header_tab_3">
+                                        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                                            <!--begin::Actions-->
+                                            <a href="@Url.Action("Index", "Services")" class="btn btn-warning font-weight-bold mr-3 my-2 my-lg-0"><i class="flaticon2-digital-marketing"></i>Services</a>
+
+                                            <!--end::Actions-->
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--end::Tab Content-->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    @RenderBody();
+                </div>
+                <br />
+              
+                <div class="d-flex flex-column-fluid py-4">
+
+                </div>
+                <br />
+                <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
+                    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="text-dark order-2 order-md-1">
+                            <span class="text-muted font-weight-bold mr-2">2021©</span>
+                            <a href="http://asntechnosoft.com" target="_blank" class="text-dark-75 text-hover-primary">ASN Technosoft Pvt Ltd.</a>
+                        </div>
+
+                        <div class="nav nav-dark order-1 order-md-2">
+                            <a href="http://asntechnosoft.com/about.html" target="_blank" class="nav-link pr-3 pl-0">About</a>
+
+                            <a href="http://asntechnosoft.com/contact.html" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- begin::User Panel-->
+    @{Html.RenderAction("PartialUserPanel", "Dashboard");}
+    <!-- end::User Panel-->
+
+
+
+    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#6993FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+    <script src="/Content/dist/assets/plugins/global/plugins.bundle.js?v=7.0.4"></script>
+    <script src="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
+    <script src="/Content/dist/assets/js/scripts.bundle.js?v=7.0.4"></script>
+
+    <script src="/Content/dist/assets/js/pages/widgets.js?v=7.0.4"></script>
+    <script>
+        $('a[data-toggle="tab"]').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            $(this).addClass('active');
+        });
+
+        $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+            var id = $(e.target).attr("href");
+            localStorage.setItem('selectedTab', id)
+        });
+
+        var selectedTab = localStorage.getItem('selectedTab');
+
+        if (selectedTab != null) {
+            $('#myTab a[data-toggle="tab"][href="' + selectedTab + '"]').tab('show');
+
+        }
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+<!--end::Body-->
+</html>

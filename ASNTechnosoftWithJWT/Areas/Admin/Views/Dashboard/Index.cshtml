@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+   // Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+ 
+</head>
+<body>
+    <div class="container">
+
+        <span>This is Dashboard</span>
+        <br />
+        <a class="active " href="@Url.Action("IMSLogin", "Dashboard")" target="_blank">Go to IMS!</a>
+     
+        <br />
+        <a href="http://localhost:44368/" target="_blank">Visit My IMS!</a>
+
+    </div>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+    <script type="text/javascript">
+        var nowY = new Date().getFullYear(),
+            options = "";
+        for (var Y = nowY; Y >= 2021; Y--) {
+            options += "<option>" + Y + "</option>";
+        }
+        $('#years').append(options);
+    </script>
+
+    
+
+
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

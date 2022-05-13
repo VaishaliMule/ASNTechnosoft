@@ -1,0 +1,100 @@
+﻿@model ASNTechnosoftWithJWT.Areas.Admin.Models.PaytmResponse
+@{
+    ViewBag.Title = "Paytm Payment Response";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <base href="../../../">
+    <meta charset="utf-8">
+    <title>Metronic | Wizard 1</title>
+
+    <!--begin::Global Theme Styles(used by all pages)-->
+    <link href="/Content/dist/assets/plugins/global/plugins.bundle.css?v=7.0.4" rel="stylesheet" type="text/css">
+    <link href="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.4" rel="stylesheet" type="text/css">
+    <link href="/Content/dist/assets/css/style.bundle.css?v=7.0.4" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="/Content/dist/assets/media/logos/ASNLogo.jpg" />
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+    <h2>Paytm Payment Response</h2>
+
+    <div align="center">
+        <table class="table table-bordered dt-center" border="1" width="50%">
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.InstituteId)</td>
+                <td>@Html.DisplayFor(m => m.InstituteId)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.InstituteName)</td>
+                <td>@Html.DisplayFor(m => m.InstituteName)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.ORDERID)</td>
+                <td>@Html.DisplayFor(m => m.ORDERID)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.TXNAMOUNT)</td>
+                <td>@Html.DisplayFor(m => m.TXNAMOUNT)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.CURRENCY)</td>
+                <td>@Html.DisplayFor(m => m.CURRENCY)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.TXNID)</td>
+                <td>@Html.DisplayFor(m => m.TXNID)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.BANKTXNID)</td>
+                <td>@Html.DisplayFor(m => m.BANKTXNID)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.STATUS)</td>
+                <td>@Html.DisplayFor(m => m.STATUS)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.RESPCODE)</td>
+                <td>@Html.DisplayFor(m => m.RESPCODE)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.RESPMSG)</td>
+                <td>@Html.DisplayFor(m => m.RESPMSG)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.TXNDATE)</td>
+                <td>@Html.DisplayFor(m => m.TXNDATE)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.GATEWAYNAME)</td>
+                <td>@Html.DisplayFor(m => m.GATEWAYNAME)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.BANKNAME)</td>
+                <td>@Html.DisplayFor(m => m.BANKNAME)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.PAYMENTMODE)</td>
+                <td>@Html.DisplayFor(m => m.PAYMENTMODE)</td>
+            </tr>
+        </table>
+        <div class="text-muted font-weight-bold font-size-h4">
+            For login
+            @Html.ActionLink("click-here", "Login")
+        </div>
+    </div>
+   
+    <script>
+        debugger;
+        function noBack() { window.history.forward() }
+        noBack();
+        window.onload = noBack;
+        window.onpageshow = function (evt) { if (evt.persisted) noBack() }
+        window.onunload = function () { void (0) }
+    </script>
+</body>
+</html>
+    

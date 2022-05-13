@@ -1,0 +1,83 @@
+﻿@model ASNTechnosoftWithJWT.Areas.Admin.Models.PaymentInitiateModel
+@{
+    ViewBag.Title = "Payment";
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>View Transaction</title>
+    <meta name="description" content="Scrollable datatables examples" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Page Vendors Styles(used by this page)-->
+    <link href="/Content/dist/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <!--end::Page Vendors Styles-->
+    <!--begin::Global Theme Styles(used by all pages)-->
+    <link href="/Content/dist/assets/plugins/global/plugins.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <link href="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+    <link href="/Content/dist/assets/css/style.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+
+    <style>
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body id="kt_body" class="align-center border-0 pt-6 pb-0">
+
+    <div class="container">
+
+        <!--begin::Card-->
+        <div class="card">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Payment
+                    </h3>
+                </div>
+
+            </div>
+            <div class="card-body border-0 pt-6 pb-0">
+                <!--begin: Datatable table table-bordered table-checkable dataTable no-footer -->
+                @using (Html.BeginForm("CreatePayment", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                 
+                            @Html.HiddenFor(model => model.InstituteId)
+                            @Html.HiddenFor(model => model.name)
+                            @Html.HiddenFor(model => model.email)
+                            @Html.HiddenFor(model => model.contactNumber)
+                            @Html.HiddenFor(model => model.amount)
+                            @*<div class="form-group row">
+                                    @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "font-size-h6 font-weight-bolder text-dark col-lg-3 col-sm-12" })
+                                    @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter the amount", @id = "Amount", autocomplete = "off", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                                </div>*@
+                            <!--end::Input-->
+                       
+
+
+
+
+                    <div class="d-flex justify-content-between border-top mt-5 pt-10">
+
+                        <div class="align-center">
+                            <input type="submit" id="btnSubmit" value="Make Payment" name="btnSubmit" class="btn btn-primary font-weight-bold text-uppercase px-9 py-4" />
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "Services";
+}
+
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+        <link href="~/Content/assets/img/favicon.png" rel="icon">
+        <link href="~/Content/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="~/Content/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="~/Content/assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/Content/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="~/Content/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="~/Content/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="~/Content/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="~/Content/assets/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+
+
+        <main id="main">
+
+            <!-- ======= Our Services Section ======= -->
+            <section class="breadcrumbs">
+                <div class="container">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2>Our Services</h2>
+                        <ol>
+                            <li><a href="index.html">Home</a></li>
+                            <li>Our Services</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </section><!-- End Our Services Section -->
+            <!-- ======= Services Section ======= -->
+
+            <section id="courses" class="courses">
+                <div class="container aos-init aos-animate" data-aos="fade-up">
+
+                    <div class="row aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                            <div class="course-item">
+                                <a href="@Url.Action("IMSDetails", "Home")"><img src="~/Content/assets/img/course-5.jpg" class="img-fluid" alt="..."></a>
+                                <div class="course-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Price</h4>
+                                        <p class="price right">Rs.5000</p>
+                                    </div>
+
+                                    <h3><a href="@Url.Action("IMSDetails", "Home")">IMS</a></h3>
+                                    <p>IMS software for institute to manage everything from purchase, stores, production, inventory, sales and accounts,web based MLM software for Multilevel Marketing companies</p>
+
+                                </div>
+                            </div>
+                        </div> <!-- End Course Item-->
+                        <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+      <div class="course-item">
+        <a href="@Url.Action("PANdetails", "Home")"><img src="assets/img/PAN_Card1.jpg" class="img-fluid" alt="..."></a>
+
+        <div class="course-content">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+           <h4>Price</h4>
+            <p class="price">Rs.500</p>
+          </div>
+
+          <h3><a href="@Url.Action("PANdetails", "Home")">PAN Seva</a></h3>
+          <p>PAN is an electronic system through which, all tax related information for a person/company is recorded against a single PAN number. This acts as the primary key for storage of information and is shared across the country. </p>
+
+        </div>
+      </div>
+    </div>  -->
+                        <!-- End Course Item-->
+
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                            <div class="course-item">
+                                <img src="~/Content/assets/img/helpdesk.jpg" class="img-fluid" alt="...">
+
+                                <div class="course-content">
+                                    <!--  <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>Price</h4>
+                  <p class="price right">Rs.5000</p>
+                </div> -->
+
+                                    <h3><a href="#">Helpdesk Service</a></h3>
+                                    <p>At ASN we provide companies help Desk services. You can hand over all your worries to support your clients or customers and concentrate on your buisness.</p>
+                                    <a href="contact.html" class="btn btn-success">Ask for Quote</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                            <div class="course-item">
+                                <a href="@Url.Action("PMJAYdetails", "Home")"><img src="~/Content/assets/img/ayushman1.jpg" class="img-fluid" alt="..."></a>
+
+                                <div class="course-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Price</h4>
+                                        <p class="price">Free</p>
+                                    </div>
+
+                                    <h3><a href="@Url.Action("PMJAYdetails", "Home")">Ayushman Bharat Yojana</a></h3>
+                                    <p>The Pradhan Mantri Jan Arogya Yojana (PMJAY) popularly known as Ayushman Bharat Yojana Scheme is a health insurance scheme introduced by the Government of India.</p>
+
+                                </div>
+                            </div>
+                        </div> <!-- End Course Item-->
+
+                    </div>
+                    <br />
+                    <div class="row aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                            <div class="course-item">
+                                <img src="~/Content/assets/img/web-development.jpg" class="img-fluid" alt="...">
+                                <div class="course-content">
+                                    <!--  <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <h4>Price</h4>
+                                   <p class="price right">Rs.5000</p>
+                                 </div> -->
+
+                                    <h3><a href="#">Web Development</a></h3>
+                                    <p>The web development process includes web design, web content development, client-side/server-side scripting and network security configuration, among other tasks.</p>
+                                    <a href="contact.html" class="btn btn-success">Ask for Quote</a>
+                                </div>
+                            </div>
+                        </div> <!-- End Course Item-->
+                        <!-- End Course Item-->
+
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                            <div class="course-item">
+                                <img src="~/Content/assets/img/cms1.jpg" class="img-fluid w-800" alt="...">
+
+                                <div class="course-content">
+                                    <!--  <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <h4>Price</h4>
+                                   <p class="price right">Rs.5000</p>
+                                 </div> -->
+
+                                    <h3><a href="#">CMS Open source</a></h3>
+                                    <p>Whether it is Word Press, Joomla or any other open source CMS or a custom desktop or web application we have expertize to develop it. Payment Gateway integration, Theme integration and customization, plugin integration and more we do in opensource technologies like PHP.</p>
+                                    <a href="contact.html" class=" btn btn-success">Ask for Quote</a>
+                                </div>
+                            </div>
+                        </div> <!-- End Course Item-->
+
+                    </div>
+
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+        </main><!-- End #main -->
+    </body>
+
+    </html>
+

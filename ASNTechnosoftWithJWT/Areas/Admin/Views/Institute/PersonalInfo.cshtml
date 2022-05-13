@@ -1,0 +1,329 @@
+﻿@model ASNTechnosoftWithJWT.Areas.Admin.Models.InstituteModel
+
+@{
+    ViewBag.Title = "PersonalInfo";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<!--begin::Head-->
+<head>
+   
+    <link href="/Content/dist/assets/css/pages/wizard/wizard-1.css?v=7.0.4" rel="stylesheet" type="text/css">
+   <style>
+       .required::after {
+            content: " *";
+            font-weight: bold;
+            color: red;
+        }
+   </style>
+</head>
+<!--end::Head-->
+<body>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Subheader-->
+        <div class="subheader py-2 py-lg-4 subheader-transparent" id="kt_subheader">
+            <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                <!--begin::Info-->
+                <div class="d-flex align-items-center flex-wrap mr-1">
+                    <!--begin::Page Heading-->
+                    <div class="d-flex align-items-baseline mr-5">
+                        <!--begin::Page Title-->
+                        <h5 class="text-dark font-weight-bold my-2 mr-5">Profile</h5>
+                        <!--end::Page Title-->
+                        <!--begin::Breadcrumb-->
+                        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                            <li class="breadcrumb-item">
+                                <a href="" class="text-muted">Personal Information</a>
+                            </li>
+
+                        </ul>
+                        <!--end::Breadcrumb-->
+                    </div>
+                    <!--end::Page Heading-->
+                </div>
+                <!--end::Info-->
+
+            </div>
+        </div>
+        <!--end::Subheader-->
+        <!--begin::Entry-->
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class="container">
+                <!--begin::Profile Personal Information-->
+                <div class="d-flex flex-row">
+                    <!--begin::Aside-->
+                    @{Html.RenderAction("AsideMenuOfProfile", "Institute");}
+                    <!--end::Aside-->
+                    <!--begin::Content-->
+                    <div class="flex-row-fluid ml-lg-8">
+                        <!--begin::Card-->
+                        <div class="card card-custom card-stretch">
+                            @using (Html.BeginForm("PersonalInfo", "Institute", FormMethod.Post, new { @class = "form", role = "form", id = "kt_form", enctype = "multipart/form-data" }))
+                            {
+                                <!--begin::Header-->
+                                <div class="card-header py-3">
+                                    <div class="card-title align-items-start flex-column">
+                                        <h3 class="card-label font-weight-bolder text-dark">Personal Information</h3>
+                                        <span class="text-muted font-weight-bold font-size-sm mt-1">Update your personal informaiton</span>
+                                    </div>
+                                    @*<div class="card-toolbar">
+                            <button type="reset" class="btn btn-success mr-2">Save Changes</button>
+                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                        </div>*@
+                                </div>
+                                <!--end::Header-->
+                                <!--begin::Form-->
+
+                                <!--begin::Body-->
+                                <div class="card-body">
+
+                                    <div class="form-group row">
+                                        <label class="font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right">Photo</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url(/Content/dist/assets/media/users/blank.png)">
+                                                @if(Model.PhotoUpload != null)
+                                                {
+                                                    <div class="image-input-wrapper" style="background-image: url('/UserImages/@Model.Photofilename')"></div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="image-input-wrapper" style="background-image: url(/Content/dist/assets/media/users/blank.png)"></div>
+                                                }
+
+                                                <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change Photo">
+                                                    <i class="fa fa-pen icon-sm text-muted"></i>
+                                                    <input type="file" name="PhotoImageFile" accept=".png, .jpg, .jpeg" />
+                                                    <input type="hidden" name="profile_avatar_remove" />
+                                                </label>
+
+                                                <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel Photo">
+                                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                </span>
+
+                                                <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove Photo">
+                                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                </span>
+
+                                            </div>
+                                            <span class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.InstituteName, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right" })
+                                                @Html.DisplayFor(model => model.InstituteName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter Your InstituteName", @id = "InstituteName", @required = "required", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.InstituteName, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right" })
+                                                @Html.DisplayFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter Your First Name", @id = "FirstName", @required = "required", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right" })
+                                                @Html.DisplayFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter Your Middle Name", @id = "MiddleName", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+
+                                                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right" })
+                                                @Html.DisplayFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", placeholder = "Enter Your Last Name", @id = "LastName", @required = "required", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right" })
+                                                @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "Email", placeholder = "examples@email.com", required = "required", autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right" })
+                                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12 datepicker", @id = "DOB", @autocomplete = "off-1" } })
+                                                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right required" })
+                                                @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>{
+               new SelectListItem(){ Text = "Male", Value = "Male"},
+               new SelectListItem(){ Text = "Female", Value = "Female"},
+               new SelectListItem(){ Text = "TransGender", Value = "TransGender"}
+               }, "--Select Gender--", new { @id = "Gender", @class = "form-control col-lg-6 col-md-9 col-sm-12", name = "Gender", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <!--begin::Select-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.MarritalStatus, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right required" })
+                                                @Html.DropDownListFor(model => model.MarritalStatus, new List<SelectListItem>{
+               new SelectListItem(){ Text = "Married ", Value = "Married "},
+               new SelectListItem(){ Text = "Single", Value = "Single"},
+               new SelectListItem(){ Text = "Divorcee", Value = "Divorcee"},
+               new SelectListItem(){ Text = "Widow", Value = "Widow"}
+               }, "--Select Gender--", new { @id = "MarritalStatus", @class = "form-control col-lg-6 col-md-9 col-sm-12", name = "MarritalStatus", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.MarritalStatus, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Select-->
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <!--begin::Input-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.Aadhar, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right" })
+                                                @Html.EditorFor(model => model.Aadhar, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "Aadhar", placeholder = "Enter your Aadhar number", autocomplete = "off", type = "adhaar-number", maxLength = "14" } })
+                                                @Html.ValidationMessageFor(model => model.Aadhar, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <!--begin::Select-->
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.PAN, htmlAttributes: new { @class = "font-size-h6 font-weight-bold text-dark col-lg-4 col-sm-12 text-right" })
+                                                @Html.EditorFor(model => model.PAN, new { htmlAttributes = new { @class = "form-control col-lg-6 col-md-9 col-sm-12", @id = "PAN", placeholder = "Enter your PAN number", autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.PAN, "", new { @class = "text-danger" })
+                                            </div>
+                                            <!--end::Select-->
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                                        <div>
+                                            <input type="submit" id="btnSubmit" value="Save Changes" name="btnSubmit" class="btn btn-success font-weight-bold text-uppercase px-9 py-4 mr-2" />
+                                            <a href="@Url.Action("","")" id="backLink" class="btn btn-bg-danger font-weight-bold text-uppercase px-9 py-4">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!--end::Body-->
+                            }
+                            <!--end::Form-->
+                        </div>
+                    </div>
+                    <!--end::Content-->
+                </div>
+                <!--end::Profile Personal Information-->
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::Entry-->
+    </div>
+    
+    <script src="/Content/dist/assets/plugins/global/plugins.bundle.js?v=7.0.4"></script>
+    <script src="/Content/dist/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
+    <script src="/Content/dist/assets/js/scripts.bundle.js?v=7.0.4"></script>
+   
+    <script src="/Content/dist/assets/js/pages/widgets.js?v=7.0.4"></script>
+    <script src="/Content/dist/assets/js/pages/custom/profile/profile.js?v=7.0.4"></script>
+    <!--end::Page Scripts-->
+    <script type="text/javascript" language="javascript">
+        $('#DOB').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            orientation: "bottom left",
+            autoclose: true,
+            endDate: "today"
+        });
+
+        var avatar5 = new KTImageInput('kt_profile_avatar');
+
+     
+
+       
+
+        $('[type="adhaar-number"]').keyup(function () {
+                var value = $(this).val();
+                value = value.replace(/\D/g, "").split(/(?:([\d]{4}))/g).filter(s => s.length > 0).join("-");
+                $(this).val(value);
+            });
+
+            $('[type="adhaar-number"]').on("change, blur", function () {
+                var value = $(this).val();
+                var maxLength = $(this).attr("maxLength");
+                if (value != null) {
+                    if (value.length > 0) {
+                        if (value.length == maxLength) {
+                            $(this).addClass("is-valid");
+                            $(this).removeClass("is-invalid");
+                        } else {
+                            $(this).addClass("is-invalid");
+                            $(this).removeClass("is-valid");
+                        }
+                    } else {
+                        $(this).removeClass("is-valid");
+                        $(this).removeClass("is-invalid");
+                    }
+
+                }
+            });
+
+        
+
+       
+        $('#Gender').select2({
+            placeholder: "Select Gender",
+            allowClear: true
+        });
+
+        $('#MarritalStatus').select2({
+            placeholder: "Select Marrital Status",
+            allowClear: true
+        });
+
+           </script>
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                @Html.Raw(TempData["Message"]);
+            });
+        </script>
+        TempData["Message"] = null;
+    }
+
+</body>
+

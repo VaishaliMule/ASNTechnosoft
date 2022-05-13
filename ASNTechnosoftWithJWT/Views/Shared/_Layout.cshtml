@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>ASN TECHNOSOFT</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="~/Content/assets/img/favicon.png" rel="icon">
+    <link href="~/Content/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Content/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Content/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Content/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/Content/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/Content/assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: ASN TECHNOSOFT - v4.3.0
+    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-ASN TECHNOSOFT/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+
+<body>
+
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <div class="logo">
+
+                <a href="index.html"><img src="~/Content/assets/img/ASNLogo1.jpg" alt="" class="img-fluid p-1"></a>
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="active " href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
+                    <li><a href="@Url.Action("Services", "Home")">Services</a></li>
+                    <li><a href="@Url.Action("Pricing", "Home")">Pricing</a></li>
+                    <!-- <li><a href="team.html">Team</a></li> -->
+                    <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
+                    <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                    <li><a href="@Url.Action("PersonalDetails", "Account")">Register</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+
+        </div>
+    </header>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <!-- ======= Footer ======= -->
+    <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+
+
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("PrivacyPolicy", "Home")">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("PricingPolicy", "Home")">Pricing policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("RefundPolicy", "Home")">Refund policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("TermsAndConditions", "Home")">Terms and Conditions</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("IMSDetails", "Home")">IMS</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("PANdetails", "Home")">PAN Seva</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("PMJAYdetails", "Home")">Ayushman Bharat Yojana</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Helpdesk</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            ASN TECHNOSOFT PRIVATE LIMITED <br>
+                            2nd Floor, Karanje Complex, Pabal Chowk,<br>
+                            Pune-Nagar Road, Opp. AXIS Bank, <br>
+                            Shikrapur,Tal-Shirur,Pune-412208<br>
+
+                            <strong>Phone:</strong> +91 9881444470<br>
+                            <strong>Email:</strong> admin@asntechnosoft.com<br>
+                        </p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                Copyright © 2021
+            </div>
+            <div class="credits">
+                
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Content/assets/vendor/aos/aos.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/Content/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/Content/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/Content/assets/vendor/purecounter/purecounter.js"></script>
+    <script src="~/Content/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/Content/assets/vendor/waypoints/noframework.waypoints.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/Content/assets/js/main.js"></script>
+</body>
+
+</html>

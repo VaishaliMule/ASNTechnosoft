@@ -1,0 +1,178 @@
+﻿
+@{
+    Layout = "~/Areas/InstituteAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
+    <title>Pie Chart</title>
+</head>
+<body>
+    <div id="chart"></div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <div id="container" style="height: 400px"></div>
+
+    <div id="chart_12"></div>
+
+    <script>
+
+            CanvasJS.addColorSet("customColorSet1",
+     ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5'
+    ]);
+
+            var chart = new CanvasJS.Chart("chart", {
+                title: {
+                    text: "Desktop Search Engine Market Share, Jul-2016"
+                },
+                animationEnabled: true,
+                legend: {
+                    verticalAlign: "center",
+                    horizontalAlign: "left",
+                    fontSize: 20,
+                    fontFamily: "Helvetica"
+                },
+                theme: "light2",
+                colorSet:  "customColorSet1",
+                data: [
+                {
+                    type: "pie",
+                    indexLabelFontFamily: "Garamond",
+                    indexLabelFontSize: 20,
+                    indexLabel: "{label} {y}",
+                    startAngle: -20,
+                    showInLegend: true,
+                    toolTipContent: "{label} {y}",
+                    dataPoints: @Html.Raw(ViewBag.DataPoints),
+
+                }
+                ]
+            });
+            chart.render();
+
+    </script>
+
+    <script>
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    type: 'pie',
+                },
+                title: { text: null },
+                subtitle: { text: null },
+                credits: { enabled: false },
+                exporting: { enabled: false },
+                tooltip: {
+                    pointFormat: '<b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 100,
+                        depth: 45,
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return Math.round(this.percentage * 100) / 100 + ' %';
+                            },
+                        },
+                        showInLegend: true,
+                    }
+                },
+                series: [{
+                    data: [{
+                        name: 'IE',
+                        y: 7,
+                        color: '#fc525a',
+                    }, {
+                        name: 'Chrome',
+                        y: 5,
+                        color: '#2cb5e1',
+                    }, {
+                        name: 'Firefox',
+                        y: 18,
+                        color: '#fc8b4d',
+                    }, {
+                        name: 'Safari',
+                        color: 'red',
+                        y: 28,
+                        color: '#e7c96d',
+                    }, {
+                        name: 'Opera',
+                        y: 31,
+                        color: '#3aacae',
+                    }, {
+                        name: 'Other',
+                        y: 11,
+                        color: '#95cc3e',
+                    }]
+                }]
+            });
+        });
+    </script>
+    <script>
+        const apexChart = "#chart_12";
+        var options = {
+            series: [44, 55, 13, 43, 22],
+            chart: {
+                width: 380,
+                type: 'pie',
+            },
+            labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }],
+            colors: [primary, success, warning, danger, info]
+        };
+
+        var chart = new ApexCharts(document.querySelector(apexChart), options);
+        chart.render();
+    </script>
+
+
+
+
+
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
+
+    <div id="container"></div>
+    <script>
+        anychart.onDocumentReady(function () {
+
+            // set the data
+            var data = @Html.Raw(ViewBag.DataPoints);
+
+            // create the chart
+            var chart = anychart.pie();
+
+            // set the chart title
+            chart.title("Population by Race for the United States: 2010 Census");
+
+            // add the data
+            chart.data(data);
+
+            // display the chart in the container
+            chart.container('container');
+            chart.draw();
+
+        });
+    </script>
+</body>
+</html>
+
+
+
